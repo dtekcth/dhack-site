@@ -1,4 +1,4 @@
-FROM node:19.2 as deps
+FROM node:19.9@sha256:92f06fc13bcc09f1ddc51f6ebf1aa3d21a6532b74f076f224f188bc6b9317570 as deps
 WORKDIR /app
 
 RUN curl -fsSL "https://github.com/pnpm/pnpm/releases/latest/download/pnpm-linuxstatic-x64" -o /bin/pnpm; chmod +x /bin/pnpm
@@ -16,7 +16,7 @@ RUN pnpm install --offline
 RUN pnpm run build
 RUN pnpm prune --prod
 
-FROM node:19.2
+FROM node:19.9@sha256:92f06fc13bcc09f1ddc51f6ebf1aa3d21a6532b74f076f224f188bc6b9317570
 WORKDIR /app
 EXPOSE 3000
 ENV NODE_ENV=production
